@@ -1,0 +1,37 @@
+<%@page import="java.sql.PreparedStatement"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<%
+		// 넘어온 데이터를 기준으로 JDBC를 통해 테이블에 값 넣기 (회원가입)
+		// 이쪽으로 넘어오는 데이터
+		// id, pw, nick, email, phone, gender, age
+	
+		request.setCharacterEncoding("EUC-KR");
+		String id = request.getParameter("id");
+		String pw = request.getParameter("pw");
+		String nick = request.getParameter("nick");
+		String email = request.getParameter("email");
+		String phone = request.getParameter("phone");
+		String gender = request.getParameter("gender");
+		int age = Integer.parseInt(request.getParameter("age"));
+		PreparedStatement psmt = null;
+		// JDBC 순서
+		// 0.드라이버 파일 프로젝트에 넣기
+		// 1.드라이버 동적로딩
+		// 2.커넥션 연결
+		// 3.SQL문 실행
+		// 4.연결종료
+	
+		// 문제
+		// 회원가입 후 main 페이지로 돌아가는 기능을 완성하시오
+		
+	%>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<%
+		// 넘어온 데이터를 기준으로 JDBC를 통해 테이블에 값 넣기 (회원가입)
+		// 이쪽으로 넘어오는 데이터
+		// id, pw, nick, email, phone, gender, age
+	
+		request.setCharacterEncoding("EUC-KR");
+	
+		String id = request.getParameter("id");
+		String pw = request.getParameter("pw");
+		String nick = request.getParameter("nick");
+		String email = request.getParameter("email");
+		String phone = request.getParameter("phone");
+		String gender = request.getParameter("gender");
+		int age = Integer.parseInt(request.getParameter("age"));
+		
+	try{
+		
+		PreparedStatement psmt = null;
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		
+		String db_url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String db_id = "shopping";
+		String db_pw = "12345";
+		Connection conn = DriverManager.getConnection(db_url, db_id, db_pw);
+		
+		String sql = "INSERT INTO MEMBER VALUES(?,?,?,?,?,?,?)";
+		psmt = conn.prepareStatement(sql);
+		
+		psmt.setString(1, id);
+		psmt.setString(2, pw);
+		psmt.setString(3, nick);
+		psmt.setString(4, email);
+		psmt.setString(5, phone);
+		psmt.setString(6, gender);
+		psmt.setInt(7, age);
+		
+		psmt.executeUpdate();
+		// JDBC 순서
+		// 0.드라이버 파일 프로젝트에 넣기
+		// 1.드라이버 동적로딩
+		// 2.커넥션 연결
+		// 3.SQL문 실행
+		// 4.연결종료
+	
+		// 문제
+		// 회원가입 후 main 페이지로 돌아가는 기능을 완성하시오
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			// try 잘 실행되거나
+			// 또는 중간에 catch로 넘어간다고 하더라도
+			// finally에는 마지막에 반드시 넘어오게 되어있다
+			// 4. 연결끊기
+			// - 연결을 끊을 때는 역순으로 끊어준다
+			try {
+				if (psmt != null) {
+					psmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+		
+	%>
+</body>
+</html>

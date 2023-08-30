@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+    // 배열 함수를 활용한 실습문제
+    let fruits = ["apple", "avocado", "banana", "blueberry", "cherry", "dragon fruit", 
+   "fig", "grape", "kiwi", "lime", "mango", "orange", "oriental melon", "pear",
+    "peach", "pineapple", "shine muscat", "strawberry", "tomato", 
+   "water melon", "yuja"];
+   console.log(fruits);
+
+   // fruit의 마지막 아이템인 "yuja" 삭제하기
+   fruits.pop();
+   console.log(fruits);
+
+   // fruits에 "grapefruit" 추가하기
+   fruits[20] = "grapefruit";
+   //fruits.push("grapefruit");
+   console.log(fruits);
+
+   // fruits에 "cherry tomato", "pine nut", "korean blackberry" 추가하기
+   fruits.push("cherry tomato","pine nut", "korean blackberry");
+   console.log(fruits);
+
+   // fruits 에 "orange"가 있는지 확인하기
+   let isCheck = fruits.includes("orange");
+   console.log("오렌지가 있나요?", isCheck);
+
+   // fruits 에 "orange"가 있는지 확인하기
+   let isCheck2 = fruits.includes("kiwi");
+   console.log("키위가 있나요?", isCheck2);
+
+   // fruits에 "water melon"을 "melon"으로 변경하기
+   let indexNum = fruits.indexOf("water melon");
+   fruits[indexNum] = "melon";
+   console.log(fruits);
+
+   // fruits에 "line"부터 3개의 아이템을 기존 배열에서 삭제하기
+   let indexNum2 = fruits.indexOf("lime");
+   fruits.splice(indexNum2, 3);
+   console.log(fruits);
+
+   // fruits에 "shine muscat" 이후의 값을 제거하기
+   let indexNum3 = fruits.indexOf("shine muscat");
+   fruits.splice(indexNum3);
+   console.log(fruits);
+
+   // "p"로 시작되는 아이템인 "pear" 부터 "pineapple" 까지 가져와 새로운 배열에 저장하기
+   let indexNum4 = fruits.indexOf("pear");
+   let indexNum5 = fruits.indexOf("pineapple");
+   let new_fruit = fruits.slice(indexNum4,indexNum5+1);   
+   console.log(new_fruit);
+
+
+   console.log(fruits);
+
+    </script>
+</body>
+</html>
